@@ -14,35 +14,35 @@ var computeArea = function(A, B, C, D, E, F, G, H) {
     var h1 = D - B;
     var w2 = G - E;
     var h2 = H - F;
-    if (E >= C || F >= D || A >= G || B >= H) {
+    var w = 0;
+    var h = 0;
+    var x1;
+    var x2;
+    var y1;
+    var y2;
+    if (A < E) {
+        x1 = E;
+    } else {
+        x1 = A;
+    }
+    if (G < C) {
+        x2 = G;
+    } else {
+        x2 = C
+    }
+    if (B < F) {
+        y1 = F;
+    } else {
+        y1 = B;
+    }
+    if (H < D) {
+        y2 = H;
+    } else {
+        y2 = D;
+    }
+    if (x1 > x2 || y1 > y2) {
         return w1 * h1 + w2 * h2;
     } else {
-        var x1;
-        var x2;
-        var y1;
-        var y2;
-        if (A < E) {
-            x1 = E;
-        } else {
-            x1 = A;
-        }
-        if (G < C) {
-            x2 = G;
-        } else {
-            x2 = C
-        }
-        if (B < F) {
-            y1 = F;
-        } else {
-            y1 = B;
-        }
-        if (H < D) {
-            y2 = H;
-        } else {
-            y2 = D;
-        }
-        var w = x2 - x1;
-        var h = y2 - y1;
-        return w1 * h1 + w2 * h2 - w * h;
+        return w1 * h1 + w2 * h2 - (x2 - x1) * (y2 - y1);
     }
 };
