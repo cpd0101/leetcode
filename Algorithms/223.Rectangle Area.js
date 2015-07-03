@@ -43,6 +43,8 @@ var computeArea = function(A, B, C, D, E, F, G, H) {
     if (x1 > x2 || y1 > y2) {
         return w1 * h1 + w2 * h2;
     } else {
-        return w1 * h1 + w2 * h2 - (x2 - x1) * (y2 - y1);
+        w = x2 - x1;
+        h = y2 - y1;
+        return w1 * h1 + w2 * h2 - w * h;
     }
 };
