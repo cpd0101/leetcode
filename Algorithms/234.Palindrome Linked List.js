@@ -10,33 +10,27 @@
  * @return {boolean}
  */
 var isPalindrome = function(head) {
-    var fast = head;
-    var slow = head;
-    var preSlow = head;
+	if (head && head.next) {
+		var fast = head.next.next;
+		var slow = head;
+	} else {
+		return true;
+	}
     while (fast) {
     	fast = fast.next;
     	if (fast) {
     		fast = fast.next;
-    		preSlow = slow;
     		slow = slow.next;
     	}
     }
-    if (preSlow) {
-    	var p1 = preSlow.next;
-    } else {
-    	return true;
-    }
-    preSlow.next = null;
-    if (p1) {
-    	var p2 = p1.next;
-    } else {
-    	return true;
-    }
+    p1 = slow.next;
+    slow.next = null;
+    var p2 = p1.next;
     if (p2) {
     	var p3 = p2.next;
     	p2.next = p1;
     } else {
-    	return p1.val == preSlow.val;
+    	return p1.val == slow.val;
     }
 	while (p3) {
     	p1 = p2;
