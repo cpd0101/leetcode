@@ -4,50 +4,49 @@
  * @return {boolean}
  */
 var canFinish = function(numCourses, prerequisites) {
-    var map = [];
+	var node = function(val) {
+		this.val = val;
+		this.next = null;
+	};
+	var cs = [];
     for (var i = 0; i < numCourses; i++) {
-    	var temp = new Array(numCourses);
-    	map.push(temp);
+    	cs.push(new node(i));
     }
+    var p = new Array(numCourses);
     var inDegree = new Array(numCourses);
-    var outDegree = new Array(numCourses);
     for (var i = 0; i < prerequisites.length; i++) {
-    	var temp = prerequisites[i];
-    	for (var j = 1; j < temp.length; j++) {
-    		if (map[temp[j - 1]][temp[j]]) {
-    			map[temp[j - 1]][temp[j]]++;
-    		} else {
-    			map[temp[j - 1]][temp[j]] = 1;
-    		}
-    		if (inDegree[temp[j]]) {
-    			inDegree[temp[j]]++;
-    		} else {
-    			inDegree[temp[j]] = 1;
-    		}
-    		if (outDegree[temp[j - 1]]) {
-    			outDegree[temp[j - 1]]++;
-    		} else {
-    			outDegree[temp[j - 1]] = 1;
-    		}
+    	var item = prerequisites[i];
+    	if (p[item[0]]) {
+    		p[item[0]].next = new node(item[1]);
+    		p[item[0]] = p[item[0]].next;
+    	} else {
+    		cs[item[0]].next = new node(item[1]);
+    		p[item[0]] = cs[item[0]].next;
+    	}
+    	if (inDegree[item[1]]) {
+    		inDegree[item[1]]++;
+    	} else {
+    		inDegree[item[1]] = 1;
     	}
     }
-    var order = [];
-    while (order.length < numCourses) {
-    	var len = order.length;
+    var count = numCourses;
+    while(count--) {
+    	var flag = true;
     	for (var i = 0; i < numCourses; i++) {
-    		if (inDegree[i] || inDegree[i] == -1) continue;
-    		order.push(i);
-    		inDegree[i] = -1;
-    		if (outDegree[i]) {
-    			for (var j = 0; j < numCourses; j++) {
-					if (map[i][j]) {
-						inDegree[j] -= map[i][j];
-						map[i][j] = 0;
-					}
-				}
+    		if (inDegree[i] == undefined) {
+    			inDegree[i] = 0;
+    			flag = false;
+    			var p = cs[i].next;
+    			while (p) {
+    				if (--inDegree[p.val] < 1) {
+    					inDegree[p.val] = undefined;
+    				}
+    				p = p.next;
+    			}
+    			break;
     		}
     	}
-    	if (order.length == len) return false;
+    	if (flag) return false;
     }
     return true;
 };
