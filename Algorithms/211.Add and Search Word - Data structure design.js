@@ -27,6 +27,46 @@ WordDictionary.prototype.addWord = function(word) {
 	p.end = true;
 };
 
+var search = function(c, p) {
+	if (c.length === 1) {
+		if (c === '.') {
+			var temp = p.p;
+			for (var key in temp) {
+				if (temp.hasOwnProperty(key)) {
+					if (temp[key].end) {
+						return true;
+					}
+				}
+			}
+			return false;
+		} else if (p.p[c]) {
+			return p.p[c].end;
+		} else {
+			return false;
+		}
+	} else {
+		if (c[0] === '.') {
+			var temp = p.p;
+			for (var key in temp) {
+				if (temp.hasOwnProperty(key)) {
+					var p1 = temp[key];
+					var c1 = c.slice(1, c.length);
+					if (search(c1, p1)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		} else if (p.p[c[0]]) {
+			p = p.p[c[0]];
+			c = c.slice(1, c.length);
+			return search(c, p);
+		} else {
+			return false;
+		}
+	}
+};
+
 /**
  * @param {string} word
  * @return {boolean}
@@ -34,45 +74,6 @@ WordDictionary.prototype.addWord = function(word) {
  * contain the dot character '.' to represent any one letter.
  */
 WordDictionary.prototype.search = function(word) {
-    var search = function(c, p) {
-    	if (c.length === 1) {
-    		if (c === '.') {
-    			var temp = p.p;
-    			for (var key in temp) {
-    				if (temp.hasOwnProperty(key)) {
-    					if (temp[key].end) {
-    						return true;
-    					}
-    				}
-    			}
-    			return false;
-    		} else if (p.p[c]) {
-    			return p.p[c].end;
-    		} else {
-    			return false;
-    		}
-    	} else {
-    		if (c[0] === '.') {
-    			var temp = p.p;
-    			for (var key in temp) {
-    				if (temp.hasOwnProperty(key)) {
-    					var p1 = temp[key];
-    					var c1 = c.slice(1, c.length);
-    					if (search(c1, p1)) {
-    						return true;
-    					}
-    				}
-    			}
-    			return false;
-    		} else if (p.p[c[0]]) {
-    			p = p.p[c[0]];
-    			c = c.slice(1, c.length);
-    			return search(c, p);
-    		} else {
-    			return false;
-    		}
-    	}
-    };
     return search(word, this.root);
 };
 
