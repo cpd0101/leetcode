@@ -37,7 +37,7 @@ var getIntersectionNode = function(headA, headB) {
     	}
     	return null;
     } else {
-    	for(var i = len2; i < len1; i++) {
+    	for(i = len2; i < len1; i++) {
     		p1 = p1.next;
     	}
     	while (p2) {

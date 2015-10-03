@@ -5,11 +5,12 @@
 var reverse = function(x) {
     var str = x + '';
     var arr = [];
+    var last;
     if (str[0] === '-') {
-        arr.push(str[0])
-        var last = 1;
+        arr.push(str[0]);
+        last = 1;
     } else {
-        var last = 0;
+        last = 0;
     }
     for (var i = str.length - 1; i >= last; i--) {
         arr.push(str[i]);

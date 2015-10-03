@@ -13,12 +13,13 @@
  */
 var lowestCommonAncestor = function(root, p, q) {
       var count = 0;
+      var left, right;
    	if (root.left) {
-   		var left = lowestCommonAncestor(root.left, p, q);
+   		left = lowestCommonAncestor(root.left, p, q);
    		if (left && left !== true) return left;
    	}
    	if (root.right) {
-   		var right = lowestCommonAncestor(root.right, p, q);
+   		right = lowestCommonAncestor(root.right, p, q);
    		if (right && right !== true) return right;
    	}
       if (left) count++;

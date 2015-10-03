@@ -20,12 +20,12 @@ var compareVersion = function(version1, version2) {
     	return 0;
     } else {
     	if (minLen === arr1.length) {
-    		for (var i = minLen; i < arr2.length; i++) {
-    			if (parseInt(arr2[i]) != 0) return -1;
+    		for (i = minLen; i < arr2.length; i++) {
+    			if (parseInt(arr2[i]) !== 0) return -1;
     		}
     	} else {
-    		for (var i = minLen; i < arr1.length; i++) {
-    			if (parseInt(arr1[i]) != 0) return 1;
+    		for (i = minLen; i < arr1.length; i++) {
+    			if (parseInt(arr1[i]) !== 0) return 1;
     		}
     	}
     	return 0;

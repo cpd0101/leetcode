@@ -24,7 +24,7 @@ Stack.prototype.pop = function() {
  * @returns {number}
  */
 Stack.prototype.top = function() {
-    return this.arr[this.arr.length - 1]
+    return this.arr[this.arr.length - 1];
 };
 
 /**

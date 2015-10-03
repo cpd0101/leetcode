@@ -18,6 +18,6 @@ var isSameTree = function(p, q) {
     		return false;
     	}
     } else {
-    	return p === q
+    	return p === q;
     }
 };

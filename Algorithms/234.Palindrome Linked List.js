@@ -10,9 +10,10 @@
  * @return {boolean}
  */
 var isPalindrome = function(head) {
+    var fast, slow;
 	if (head && head.next) {
-		var fast = head.next.next;
-		var slow = head;
+		fast = head.next.next;
+		slow = head;
 	} else {
 		return true;
 	}
@@ -23,11 +24,12 @@ var isPalindrome = function(head) {
     		slow = slow.next;
     	}
     }
+    var p1, p2, p3;
     p1 = slow.next;
     slow.next = null;
-    var p2 = p1.next;
+    p2 = p1.next;
     if (p2) {
-    	var p3 = p2.next;
+    	p3 = p2.next;
     	p2.next = p1;
     } else {
     	return p1.val == slow.val;

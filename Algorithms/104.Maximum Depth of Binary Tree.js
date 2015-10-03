@@ -19,10 +19,11 @@ var maxDepth = function(root) {
     } else {
     	return 0;
     }
+    var level;
     while (queue.length) {
     	var obj = queue.shift();
     	var node = obj.node;
-    	var level = obj.level;
+    	level = obj.level;
     	if (node.left) {
     		queue.push({
     			node: node.left,

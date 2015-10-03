@@ -7,14 +7,15 @@
  */
 var merge = function(nums1, m, nums2, n) {
 	nums1.splice(m, nums1.length - m);
+    var i;
 	if (nums1.length < 1) {
-		for (var i = 0; i < n; i++) {
+		for (i = 0; i < n; i++) {
 			nums1.push(nums2[i]);
 		}
 		return;
 	}
 	var last = 0;
-    for (var i = 0; i < n; i++) {
+    for (i = 0; i < n; i++) {
     	for (var j = last; j < nums1.length; j++) {
     		if (nums2[i] > nums1[j]) {
     			if (j < nums1.length - 1) {

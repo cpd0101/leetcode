@@ -7,8 +7,9 @@ var addBinary = function(a, b) {
     var min = a.length < b.length ? a.length : b.length;
     var str = '';
     var carry = 0;
+    var sum, j;
     for (var i = 1; i <= min; i++) {
-        var sum = Math.floor(a[a.length - i]) + Math.floor(b[b.length - i]) + carry;
+        sum = Math.floor(a[a.length - i]) + Math.floor(b[b.length - i]) + carry;
         if (sum > 1) {
             carry = 1;
             str = sum % 2 + str;
@@ -18,7 +19,7 @@ var addBinary = function(a, b) {
         }
     }
     if (a.length > b.length) {
-        for (var j = i; j <= a.length; j++) {
+        for (j = i; j <= a.length; j++) {
             sum = Math.floor(a[a.length - j]) + carry;
             if (sum > 1) {
                 carry = 1;
@@ -29,7 +30,7 @@ var addBinary = function(a, b) {
             }
         }
     } else {
-        for (var j = i; j <= b.length; j++) {
+        for (j = i; j <= b.length; j++) {
             sum = Math.floor(b[b.length - j]) + carry;
             if (sum > 1) {
                 carry = 1;

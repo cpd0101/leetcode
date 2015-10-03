@@ -11,11 +11,12 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function(l1, l2) {
+    var head, p1, p2;
     if (l1 && l2) {
     	if (l1.val < l2.val) {
-    		var head = l1;
-    		var p1 = l1.next;
-    		var p2 = l2;
+    		head = l1;
+    		p1 = l1.next;
+    		p2 = l2;
     	} else {
     		head = l2;
     		p1 = l1;

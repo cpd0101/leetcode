@@ -28,7 +28,7 @@ var computeArea = function(A, B, C, D, E, F, G, H) {
     if (G < C) {
         x2 = G;
     } else {
-        x2 = C
+        x2 = C;
     }
     if (B < F) {
         y1 = F;
