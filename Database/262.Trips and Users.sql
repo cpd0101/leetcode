@@ -12,5 +12,5 @@ from (
         and Request_at >= '2013-10-01'
         and Request_at <= '2013-10-03'
     order by Request_at
-    ) as tmp
+) as tmp
 group by Request_at;
