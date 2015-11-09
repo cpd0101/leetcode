@@ -14,18 +14,17 @@ var maxProduct = function(nums) {
     var product = 1;
     for (var i = 0; i < nums.length; i++) {
         if (nums[i] === 0) {
-            return Math.max(maxProduct(nums.slice(0, i)), maxProduct(nums.slice(i + 1)), nums[i]);
+            return Math.max(maxProduct(nums.slice(0, i)), maxProduct(nums.slice(i + 1)), 0);
         } else if (nums[i] < 0) {
             count++;
             pos = i;
-        } else {
-            product *= nums[i];
         }
+        product *= nums[i];
     }
 
     if (count === 1) {
-        return Math.max(maxProduct(nums.slice(0, pos)), maxProduct(nums.slice(pos + 1)), nums[pos]);
-    } else if (count === 0) {
+        return Math.max(maxProduct(nums.slice(0, pos)), maxProduct(nums.slice(pos + 1)));
+    } else if (count % 2 === 0) {
         return product;
     }
 
@@ -45,28 +44,6 @@ var maxProduct = function(nums) {
         } else {
             break;
         }
-    }
-
-    if (i === j) {
-        if (nums[i] > 0) {
-            if ((max > 0 && min > 0) || (min < 0 && max < 0)) {
-                return min * max * nums[i];
-            } else {
-                return Math.max(min, max) * nums[i];
-            }
-        } else {
-            if ((max < 0 && min > 0) || (min < 0 && max > 0)) {
-                return min * max * nums[i];
-            } else if (min < 0 && max < 0) {
-                return Math.min(min, max) * nums[i];
-            } else {
-                return Math.max(min, max);
-            }
-        }
-    }
-
-    if (i > j) {
-        return min;
     }
 
     product = Math.min(min, max);
