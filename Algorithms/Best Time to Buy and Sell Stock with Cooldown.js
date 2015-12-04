@@ -3,30 +3,21 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    var cache = [];
-    for (var i = 0; i < prices.length; i++) {
-        cache[i] = [];
+    if (prices.length < 2) {
+        return 0;
     }
-    var profit = function (start, end) {
-        if (end - start < 2) {
-            return prices[end] - prices[start] > 0 ? prices[end] - prices[start] : 0;
-        } else {
-            var max = 0;
-            for (var i = start + 1; i < end; i++) {
-                if (cache[start][i - 1] === undefined) {
-                    cache[start][i - 1] = profit(start, i - 1);
-                }
 
-                if (cache[i + 1][end] === undefined) {
-                    cache[i + 1][end] = profit(i + 1, end);
-                }
+    var buy = [];
+    var sell = [];
+    buy[0] = -prices[0];
+    buy[1] = Math.max(buy[0], -prices[1]);
+    sell[0] = 0;
+    sell[1] = Math.max(sell[0], buy[0] + prices[1]);
 
-                if (cache[start][i - 1] + cache[i + 1][end] > max) {
-                    max = cache[start][i - 1] + cache[i + 1][end];
-                }
-            }
-            return max;
-        }
-    };
-    return profit(0, prices.length - 1);
+    for (var i = 2; i < prices.length; i++) {
+        buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i]);
+        sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
+    }
+
+    return sell[prices.length - 1];
 };
