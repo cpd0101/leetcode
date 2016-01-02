@@ -12,9 +12,7 @@ var isPalindrome = function (s) {
 };
 var map = {};
 var partition = function (s) {
-    if (s.length === 0) {
-        return [];
-    } else if (s.length < 2) {
+    if (s.length < 2) {
         return [[s]];
     } else {
         if (map[s]) {
