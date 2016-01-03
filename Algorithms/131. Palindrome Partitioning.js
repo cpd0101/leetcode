@@ -10,7 +10,11 @@ var isPalindrome = function (s) {
     }
     return true;
 };
+var cache = {};
 var partition = function (s) {
+    if (cache[s]) {
+        return cache[s];
+    }
     var ret = [];
     ret.push(s.split(''));
     for (var i = 0; i < s.length; i++) {
@@ -24,5 +28,6 @@ var partition = function (s) {
             }
         }
     }
+    cache[s] = ret;
     return ret;
 };
