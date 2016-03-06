@@ -4,9 +4,8 @@
  */
 var NumArray = function(nums) {
     this.nums = nums;
-    this.map = {};
-    this.map[-1] = 0;
-    for (var i = 0; i < this.nums.length; i++) {
+    this.map = {'-1': 0};
+    for (var i = 0; i < nums.length; i++) {
         this.map[i] = this.map[i - 1] + nums[i];
     }
 };
