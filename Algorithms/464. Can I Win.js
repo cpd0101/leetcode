@@ -30,12 +30,13 @@ var canIWin = function (maxChoosableInteger, desiredTotal) {
                 var ulose = !canIWinSum(maxChoosableInteger, desiredTotal, sumNow + i);
                 choosenNumberSeq ^= bit;
 
-                if (ulose) {
+                if (ulose) { // 在choosenNumberSeq下，自己赢了
                     winState[choosenNumberSeq] = true;
                     return true;
                 }
             } 
         }
+        // 自己没有任何方式可以赢，代表自己输了
         winState[choosenNumberSeq] = false;
         return false;
     };
