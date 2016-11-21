@@ -19,7 +19,7 @@ var canIWin = function (maxChoosableInteger, desiredTotal) {
         if (typeof winState[choosenNumberSeq] === 'boolean') {
             return winState[choosenNumberSeq];
         }
-        if (sumNow >= desiredTotal) {
+        if (sumNow >= desiredTotal) { // 在choosenNumberSeq下，对方输了
             winState[choosenNumberSeq] = false;
             return false;
         }
