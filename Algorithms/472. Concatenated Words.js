@@ -3,8 +3,8 @@
  * @return {string[]}
  */
 var findAllConcatenatedWordsInADict = function (words) {
-  const wordSet = new Set(words);
   const ans = [];
+  const wordSet = new Set(words);
   function search (word) {
     if (wordSet.has(word)) {
       return true;
